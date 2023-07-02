@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Random Cuisine Selector</title>
+    <style>
+      body {
+        font-family:Georgia, 'Times New Roman', Times, serif;
+        background-image: url(https://images.unsplash.com/photo-1600961459296-740b3449fb47?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80);
+
+        background-size: cover;
+      }
+      h1 {
+        text-align: center;
+        font-size: 5rem;
+        color: rgb(233, 244, 159);
+        margin-top: 180px;
+        
+      }
+      .container {
+        text-align: center;
+        margin-top: 150px;
+      }
+      button {
+        padding: 10px 30px;
+        font-size: 26px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-right: 50px;
+        border-radius: 10px;
+      }
+      #result {
+        margin-top: 20px;
+        font-size: 60px;
+        font-weight: bold;
+        color: rgb(237, 134, 184);
+      }
+      #nearby {
+        margin-top: 90px;
+        flex: auto;
+        background-color: rgb(238, 138, 16);
+      }
+    </style>
+    <script>
+      function getRandomCuisine() {
+        var cuisines = [
+          "Italian",
+          "Mexican",
+          "Chinese",
+          "Indian",
+          "Japanese",
+          "Greek",
+          "Thai",
+          "Indonesian",
+          "Vietnamese",
+          "German",
+          "Turkish",
+          "Mediterranian",
+          "Korean",
+        ];
+        var randomIndex = Math.floor(Math.random() * cuisines.length);
+        var cuisine = cuisines[randomIndex];
+        document.getElementById("result").textContent =
+          "You should go for " + cuisine + " cuisine!";
+      }
+
+      function getRandomLocalCuisine() {
+        var localCuisines = [
+          "Char Kuey Teow",
+          "Economic Rice",
+          "Lontong",
+          "Roti Prata",
+          "Chilli Crab",
+          "Hainanese Curry Rice",
+          "Fish Porridge",
+          "Hokkien Mee",
+          "Kuey Chap",
+          "Nasi Lemak",
+          "Mala",
+          "Western",
+          "Mee Goreng",
+          "Mee Rebus",
+          "Porridge",
+          "Char Siew / Roast Pork / Roast Duck Rice",
+          "Prawn Noodle",
+          "Ba Chor Mee",
+          "Bak Kut Teh",
+          "Laksa",
+          "Wanton Noodle",
+          "Satay Bee Hoon",
+          "Fishball Noodle",
+          "Braised Duck Rice",
+          "Indian Rojak",
+          "Pig's Organ Soup",
+          "Beef Noodle",
+          "Teochew Porridge",
+          "Chicken Curry Rice / Noodle",
+          "Claypot Rice",
+          "Ngoh Hiang",
+          "Oyster Omelette",
+          "Yong Tau Foo",
+          "Mee Siam",
+          "Beef Noodle",
+          "White Bee Hoon",
+          "Laksa",
+          "Hor Fun",
+          "Fried Rice",
+          "Mutton Soup",
+          "Nasi Briyani",
+          "Satay",
+          "Lor Mee",
+          "Murtabak",
+          "Fish Head Steamboat",
+          "Ban Mian",
+          "Nasi Padang",
+          "Chee Chong Fan",
+          "BBQ Stingray",
+          "",
+        ];
+        var randomIndex = Math.floor(Math.random() * localCuisines.length);
+        var localCuisine = localCuisines[randomIndex];
+        document.getElementById("result").textContent =
+          "Let's Go for " + localCuisine + "!";
+      }
+
+      function showNearbyEateries() {
+        var selectedCuisine = document.getElementById("result").textContent;
+        if (selectedCuisine.includes("for")) {
+          var cuisineName = selectedCuisine.substring(
+            13,
+            selectedCuisine.length
+          );
+          var searchQuery = "nearby eateries " + cuisineName;
+          var searchUrl =
+            "https://www.google.com/search?q=" +
+            encodeURIComponent(searchQuery);
+          window.open(searchUrl, "_blank");
+        } else {
+          alert("Please select a cuisine first!");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Random Cuisine Selector</h1>
+    <div class="container">
+      <button onclick="getRandomCuisine()">International Cuisine</button>
+      <button onclick="getRandomLocalCuisine()">Singapore Local Cuisine</button>
+      <div>
+        <button onclick="showNearbyEateries()" id="nearby">
+          Nearby Eateries
+        </button>
+      </div>
+      <p id="result"></p>
+    </div>
+  </body>
+</html>
